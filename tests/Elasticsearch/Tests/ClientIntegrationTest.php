@@ -80,7 +80,7 @@ class ClientIntegrationTest extends \PHPUnit\Framework\TestCase
 
         $result = $client->info();
 
-        $this->assertContains('"port"', $this->getLevelOutput(LogLevel::INFO, $this->logger->output));
+        $this->assertStringContainsString('"port"', $this->getLevelOutput(LogLevel::INFO, $this->logger->output));
     }
 
     public function testLogRequestFailHasWarning()
