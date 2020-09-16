@@ -162,7 +162,7 @@ class YamlRunnerTest extends \PHPUnit\Framework\TestCase
         $this->client = $this->client->build();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clean();
     }
