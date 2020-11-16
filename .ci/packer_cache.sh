@@ -2,7 +2,7 @@
 
 source /usr/local/bin/bash_standard_lib.sh
 
-DOCKER_IMAGES="php:8.0.0rc1-cli-buster
+DOCKER_IMAGES="php:8.0.0RC4-cli-buster
 php:7.4-cli
 php:7.3-cli
 php:7.2-cli
