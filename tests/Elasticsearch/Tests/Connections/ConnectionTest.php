@@ -334,4 +334,36 @@ class ConnectionTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf(ServerErrorResponseException::class, $result);
         $this->assertStringContainsString('master_not_discovered_exception', $result->getMessage());
     }
+
+    /**
+     * @depends testGetHeadersContainUserAgent
+     *
+     * @covers \Connection::performRequest
+     * @covers \Connection::getURI
+     */
+    public function testParametersAreSent()
+    {
+        $connectionParams = [];
+        $host = [
+            'host' => 'localhost'
+        ];
+        $requestParams = [
+            'foo' => true,
+            'baz' => false,
+            'bar' => 'baz'
+        ];
+
+        $connection = new Connection(
+            ClientBuilder::defaultHandler(),
+            $host,
+            $connectionParams,
+            $this->serializer,
+            $this->logger,
+            $this->trace
+        );
+        $result  = $connection->performRequest('GET', '/', $requestParams);
+        $request = $connection->getLastRequestInfo()['request'];
+
+        $this->assertEquals('/?foo=true&baz=false&bar=baz', $request['uri']);
+    }
 }
