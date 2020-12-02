@@ -152,7 +152,7 @@ class YamlRunnerTest extends \PHPUnit\Framework\TestCase
         echo "ES Version: ".static::$esVersion."\n";
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->client = Elasticsearch\ClientBuilder::create()
             ->setHosts([self::getHost()]);
@@ -162,7 +162,7 @@ class YamlRunnerTest extends \PHPUnit\Framework\TestCase
         $this->client = $this->client->build();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clean();
     }
@@ -846,7 +846,7 @@ class YamlRunnerTest extends \PHPUnit\Framework\TestCase
         $path = $testSuite === 'oss'
             ? __DIR__ . '/../../../util/elasticsearch/rest-api-spec/src/main/resources/rest-api-spec/test'
             : __DIR__ . '/../../../util/elasticsearch/x-pack/plugin/src/test/resources/rest-api-spec/test';
-    
+
         $files = [];
 
         $finder = new Finder();
